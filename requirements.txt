@@ -1,0 +1,9 @@
+# Agentic POC — Python deps
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.0.0
+pyyaml>=6.0
+httpx>=0.25.0
+streamlit>=1.28.0
+pandas>=2.0.0
+python-dotenv>=1.0.0

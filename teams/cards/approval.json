@@ -1,0 +1,30 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Approve action for incident?",
+      "weight": "bolder",
+      "size": "medium"
+    },
+    {
+      "type": "TextBlock",
+      "text": "{{incident_id}} — {{action_suggestion}}",
+      "wrap": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Approve",
+      "data": { "action": "approve", "incident_id": "{{incident_id}}" }
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Reject",
+      "data": { "action": "reject", "incident_id": "{{incident_id}}" }
+    }
+  ]
+}

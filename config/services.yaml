@@ -1,0 +1,24 @@
+llm:
+  enabled: false
+  endpoint_env: LLM_ENDPOINT
+  api_key_env: LLM_API_KEY
+teams:
+  enabled: false
+  webhook_url_env: TEAMS_WEBHOOK_URL
+  callback_base_env: TEAMS_CALLBACK_BASE_URL
+twilio:
+  enabled: false
+  account_sid_env: TWILIO_ACCOUNT_SID
+  auth_token_env: TWILIO_AUTH_TOKEN
+  from_number_env: TWILIO_FROM_NUMBER
+smtp:
+  enabled: false
+  host_env: SMTP_HOST
+  port_env: SMTP_PORT
+  user_env: SMTP_USER
+  password_env: SMTP_PASSWORD
+  from_env: SMTP_FROM
+rag:
+  enabled: false
+  endpoint_env: RAG_ENDPOINT
+  api_key_env: RAG_API_KEY

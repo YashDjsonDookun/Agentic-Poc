@@ -1,0 +1,10 @@
+# RAG service placeholder — assume provided later (RAG.1)
+# No implementation until service is decided; code reads config when present.
+
+rag:
+  enabled: false
+  endpoint_env: RAG_ENDPOINT
+  api_key_env: RAG_API_KEY
+  # Optional: index/source names when service is known
+  # index_name: ""
+  # source_names: []

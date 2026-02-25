@@ -1,0 +1,11 @@
+// RiveScript placeholder for Teams approval flow (T.1)
+// Drive which Adaptive Card to send and how to interpret responses.
+
+// + request approval
+// - Send approval card with incident_id and action; wait for user response.
+
+// + approve
+// - Record approval; trigger Executor.
+
+// + reject
+// - Record rejection; optionally notify.

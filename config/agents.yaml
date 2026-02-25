@@ -1,0 +1,24 @@
+# Agent identities and structured config (Phase 0.1)
+# Per-agent instructions/prompts live in config/agents/*.md
+
+agents:
+  sentinel:
+    identity: sentinel
+    enabled: true
+    timeout_seconds: 30
+    description: "Monitoring phase: collect, evaluate, route alerts"
+  triage:
+    identity: triage
+    enabled: true
+    timeout_seconds: 60
+    description: "Incident handling: RCA, enrich, recommend"
+  chronicler:
+    identity: chronicler
+    enabled: true
+    timeout_seconds: 90
+    description: "Doc gen & SOP: aggregate, write, publish"
+  conductor:
+    identity: conductor
+    enabled: true
+    timeout_seconds: 10
+    description: "Orchestrator: route events, invoke phases"

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "New incident",
+      "weight": "bolder",
+      "size": "medium"
+    },
+    {
+      "type": "FactSet",
+      "facts": [
+        { "title": "Incident ID", "value": "{{incident_id}}" },
+        { "title": "Service", "value": "{{service}}" },
+        { "title": "Severity", "value": "{{severity}}" },
+        { "title": "Summary", "value": "{{summary}}" }
+      ]
+    }
+  ]
+}

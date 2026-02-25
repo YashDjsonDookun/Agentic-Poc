@@ -1,0 +1,2 @@
+timestamp,agent_id,action_type,entity_id,outcome,detail_level,duration_ms,error_message
+2025-01-01T00:00:00Z,conductor,received_event,evt_1,logged,comprehensive,0,

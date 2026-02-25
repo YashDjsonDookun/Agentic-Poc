@@ -1,0 +1,5 @@
+severity,jira_priority,servicenow_priority
+critical,Highest,1
+high,High,2
+medium,Medium,3
+low,Low,4

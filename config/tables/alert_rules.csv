@@ -1,0 +1,3 @@
+rule_id,metric,operator,threshold,service,enabled
+rule_1,cpu_percent,gt,90,app-svc,true
+rule_2,error_rate,gt,0.05,api-gw,true
