@@ -1,11 +1,4 @@
 servicenow:
   enabled: false
-  instance_url_env: SERVICENOW_INSTANCE_URL
-  username_env: SERVICENOW_USERNAME
-  password_env: SERVICENOW_PASSWORD
 jira:
   enabled: false
-  base_url_env: JIRA_BASE_URL
-  username_env: JIRA_USERNAME
-  api_token_env: JIRA_API_TOKEN
-  project_key_env: JIRA_PROJECT_KEY

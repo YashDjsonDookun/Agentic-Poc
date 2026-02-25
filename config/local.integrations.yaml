@@ -1,0 +1,9 @@
+servicenow:
+  instance_url: ''
+  username: ''
+  password: ''
+jira:
+  base_url: ''
+  username: ''
+  api_token: ''
+  project_key: ''

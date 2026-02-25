@@ -18,14 +18,14 @@ st.caption("Central hub & control panel — configure agents, view tickets, simu
 
 # Multi-page: Streamlit auto-adds pages from ui/pages/ to the sidebar.
 st.sidebar.markdown("### Pages")
-st.sidebar.markdown("Use the sidebar or navigate to **Overview**, **config**, **tables**, **logs**, **tickets**, **simulate**.")
+st.sidebar.markdown("Use the sidebar: **Overview** → **Configuration** → **Tables** → **Tickets** → **Simulate** → **Logs**.")
 
 st.markdown("---")
 st.markdown("""
 - **Overview** — Dashboard: recent incidents, agent actions, audit tail.
-- **Configuration** — View config (agents, services, integrations). No secrets in UI.
+- **Configuration** — View and edit config (agents, services, integrations). No secrets in UI.
 - **Tables** — Edit tabular CSV config (alert rules, severity mapping, etc.); save locally.
-- **Logs** — Toggle simple/comprehensive audit logs; filter by agent, action, date, outcome.
 - **Tickets** — List tickets (Jira/ServiceNow when configured); open in browser.
 - **Simulate issues** — Trigger simulator scenarios; see incidents/tickets created.
+- **Logs** — Toggle simple/comprehensive audit logs; filter by agent, action, date, outcome.
 """)
