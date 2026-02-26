@@ -1,0 +1,32 @@
+incident_id,severity,service,summary,timestamp,ticket_id,ticket_system,status,ticket_number,parent_incident_id,parent_ticket_number
+inc_fac0db90bce0,critical,app-svc,High CPU on app-svc,2026-02-25T11:07:54Z,811729d1c39372107ee3fc0ed4013186,servicenow,open,,,
+inc_a6c3603b26f1,critical,app-svc,High CPU on app-svc,2026-02-25T11:25:02Z,840ba5d9c39372107ee3fc0ed40131fd,servicenow,open,,,
+inc_477b0fe3c6a9,critical,app-svc,High CPU on app-svc,2026-02-25T12:53:03Z,092f7591c35772107ee3fc0ed40131ca,servicenow,open,,,
+inc_0544b1be1156,low,api-gw,P99 latency spike on api-gw,2026-02-25T13:37:58Z,1769c295c39772107ee3fc0ed4013114,servicenow,open,,,
+inc_88125073e90c,critical,app-svc,High CPU on app-svc,2026-02-25T13:38:49Z,e399c295c39772107ee3fc0ed40131d0,servicenow,closed,,,
+inc_607ec66d98be,high,api-gw,Service api-gw down,2026-02-25T13:39:59Z,a8e942d5c39772107ee3fc0ed4013140,servicenow,open,,,
+inc_c9b82858489d,high,api-gw,Service api-gw down,2026-02-25T13:53:10Z,b5ec4e1dc39772107ee3fc0ed4013178,servicenow,open,,,
+inc_ef08592aea37,high,api-gw,Service api-gw down,2026-02-25T13:58:40Z,db2e4e1dc39772107ee3fc0ed40131fb,servicenow,closed,,,
+inc_687ec7a0a545,critical,app-svc,High CPU on app-svc,2026-02-25T14:06:18Z,dfef8e91c3d772107ee3fc0ed4013163,servicenow,closed,,,
+inc_ff78915da078,low,api-gw,P99 latency spike on api-gw,2026-02-25T14:07:26Z,5f209e91c3d772107ee3fc0ed40131a9,servicenow,closed,,,
+inc_4da172d26c26,high,app-svc,Error rate spike on app-svc,2026-02-25T14:48:48Z,d1a99655c31b72107ee3fc0ed4013138,servicenow,closed,INC0010011,,
+inc_ab644e39f2d1,high,app-svc,Error rate spike on app-svc,2026-02-25T14:49:00Z,c8b91a55c31b72107ee3fc0ed4013175,servicenow,closed,INC0010012,,
+inc_b7803aaf3de3,high,app-svc,Error rate spike on app-svc,2026-02-25T14:49:11Z,3ab95a55c31b72107ee3fc0ed4013105,servicenow,closed,INC0010013,,
+inc_0d0a43fb78b3,high,api-gw,Service api-gw down,2026-02-25T14:55:53Z,c94b9a19c31b72107ee3fc0ed4013146,servicenow,closed,INC0010014,,
+inc_7e86552fe801,critical,app-svc,High CPU on app-svc,2026-02-25T17:00:16Z,e3b7ba9dc3db72107ee3fc0ed40131f9,servicenow,closed,INC0010015,,
+inc_b8824ad712f9,low,api-gw,P99 latency spike on api-gw,2026-02-25T17:08:33Z,91a9f251c31f72107ee3fc0ed4013134,servicenow,closed,INC0010016,,
+inc_b593e254db48,high,app-svc,High memory on app-svc,2026-02-25T17:18:51Z,180c3695c31f72107ee3fc0ed4013140,servicenow,closed,INC0010017,,
+inc_f7403ab7937a,critical,app-svc,High CPU on app-svc,2026-02-26T07:30:03Z,a5defde9c3d3f2107ee3fc0ed40131b3,servicenow,closed,INC0010018,,
+inc_1eed7b0185d3,high,app-svc,High memory on app-svc,2026-02-26T07:41:38Z,da714661c317f2107ee3fc0ed4013133,servicenow,closed,INC0010019,,
+inc_0be9d7df20ef,critical,app-svc,High CPU on app-svc,2026-02-26T07:57:34Z,37150629c317f2107ee3fc0ed4013162,servicenow,,INC0010020,,
+inc_db54981f1492,critical,app-svc,High CPU on app-svc,2026-02-26T07:59:31Z,8c954269c317f2107ee3fc0ed40131ca,servicenow,,INC0010021,,
+inc_9ce6dbc1deaf,critical,app-svc,High CPU on app-svc,2026-02-26T08:09:56Z,69f746edc317f2107ee3fc0ed40131d0,servicenow,closed,INC0010022,,
+inc_55b014d95e03,critical,app-svc,High CPU on app-svc,2026-02-26T08:27:15Z,62eb0ee1c357f2107ee3fc0ed40131e0,servicenow,closed,INC0010023,,
+inc_beb38291df5a,critical,api-gw,Service api-gw down,2026-02-26T08:42:30Z,826f8a6dc357f2107ee3fc0ed40131d7,servicenow,closed,INC0010024,,
+inc_b7c59851d072,critical,app-svc,High CPU on app-svc,2026-02-26T10:15:27Z,7935eee5c31bf2107ee3fc0ed4013167,servicenow,closed,INC0010026,SELF,INC0010026
+inc_df2ca2723407,critical,app-svc,High CPU on app-svc,2026-02-26T10:17:52Z,2b35eee5c31bf2107ee3fc0ed401317f,servicenow,closed,INC0010027,inc_b7c59851d072,INC0010026
+inc_735a6087e9b3,high,app-svc,High memory on app-svc,2026-02-26T10:30:04Z,d818a66dc31bf2107ee3fc0ed401314e,servicenow,closed,INC0010029,SELF,INC0010029
+inc_e4073222b737,high,app-svc,High memory on app-svc,2026-02-26T10:30:22Z,4618e66dc31bf2107ee3fc0ed4013108,servicenow,closed,INC0010030,inc_735a6087e9b3,INC0010029
+inc_cf090a1c3f0c,high,app-svc,High memory on app-svc,2026-02-26T10:30:37Z,1d282a6dc31bf2107ee3fc0ed401314c,servicenow,closed,INC0010031,inc_735a6087e9b3,INC0010029
+inc_99f643ca5002,high,app-svc,High memory on app-svc,2026-02-26T10:30:53Z,09386a6dc31bf2107ee3fc0ed40131cf,servicenow,closed,INC0010032,inc_735a6087e9b3,INC0010029
+inc_a6dd447b2556,high,app-svc,High memory on app-svc,2026-02-26T10:31:07Z,d848ea6dc31bf2107ee3fc0ed4013184,servicenow,closed,INC0010033,inc_735a6087e9b3,INC0010029

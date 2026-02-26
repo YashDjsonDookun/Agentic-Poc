@@ -1,2 +1,8 @@
 timestamp,agent_id,action_type,entity_id,outcome,detail_level,duration_ms,error_message
 2025-01-01T00:00:00Z,conductor,received_event,evt_1,logged,comprehensive,0,
+2026-02-26T11:10:08Z,cascade_closer,cascade_close_start,INC0010029,started,comprehensive,,,Cascade close initiated for master INC0010029
+2026-02-26T11:10:19Z,cascade_closer,child_closed,INC0010030,success,comprehensive,,,Child INC0010030 closed via cascade from INC0010029
+2026-02-26T11:10:29Z,cascade_closer,child_closed,INC0010031,success,comprehensive,,,Child INC0010031 closed via cascade from INC0010029
+2026-02-26T11:10:41Z,cascade_closer,child_closed,INC0010032,success,comprehensive,,,Child INC0010032 closed via cascade from INC0010029
+2026-02-26T11:10:50Z,cascade_closer,child_closed,INC0010033,success,comprehensive,,,Child INC0010033 closed via cascade from INC0010029
+2026-02-26T11:10:59Z,cascade_closer,master_closed,INC0010029,success,comprehensive,,,"Master INC0010029 closed. Children closed: 4, failed: 0"

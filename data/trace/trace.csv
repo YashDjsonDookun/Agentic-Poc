@@ -1,0 +1,324 @@
+timestamp,run_id,incident_id,ticket_number,step_order,agent,action,decision,rationale,outcome,detail
+2026-02-26T07:57:34Z,run_321469b88c,,,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T07:57:34Z,run_321469b88c,,,1,Collector,normalise_event,normalised,Event evt_68e36a9a3496 from simulator: cpu_percent=95.0 percent on app-svc.,success,evt_68e36a9a3496
+2026-02-26T07:57:34Z,run_321469b88c,,,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T07:57:34Z,run_321469b88c,,,2,Evaluator,evaluate_thresholds,alert,cpu_percent 95.0 > 90.0,success,metric=cpu_percent value=95.0
+2026-02-26T07:57:34Z,run_321469b88c,,,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T07:57:34Z,run_321469b88c,,,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T07:57:34Z,run_321469b88c,,,4,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T07:57:34Z,run_321469b88c,inc_0be9d7df20ef,,4,Incident Creator,create_incident,created,Incident inc_0be9d7df20ef created with severity=critical for app-svc.,success,severity=critical
+2026-02-26T07:57:34Z,run_321469b88c,inc_0be9d7df20ef,,5,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T07:57:36Z,run_321469b88c,inc_0be9d7df20ef,,5,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T07:57:36Z,run_321469b88c,inc_0be9d7df20ef,,6,Ticket Writer,create_ticket,invoke,Create ITSM ticket (ServiceNow / Jira) mapped from severity.,started,
+2026-02-26T07:57:43Z,run_321469b88c,inc_0be9d7df20ef,,6,Ticket Writer,create_ticket,created,Ticket INC0010020 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010020
+2026-02-26T07:57:43Z,run_321469b88c,inc_0be9d7df20ef,,7,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T07:59:31Z,run_ade0edf249,,,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T07:59:31Z,run_ade0edf249,,,1,Collector,normalise_event,normalised,Event evt_fccbb0d7a0a7 from simulator: cpu_percent=95.0 percent on app-svc.,success,evt_fccbb0d7a0a7
+2026-02-26T07:59:31Z,run_ade0edf249,,,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T07:59:31Z,run_ade0edf249,,,2,Evaluator,evaluate_thresholds,alert,cpu_percent 95.0 > 90.0,success,metric=cpu_percent value=95.0
+2026-02-26T07:59:31Z,run_ade0edf249,,,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T07:59:31Z,run_ade0edf249,,,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T07:59:31Z,run_ade0edf249,,,4,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T07:59:31Z,run_ade0edf249,inc_db54981f1492,,4,Incident Creator,create_incident,created,Incident inc_db54981f1492 created with severity=critical for app-svc.,success,severity=critical
+2026-02-26T07:59:31Z,run_ade0edf249,inc_db54981f1492,,5,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T07:59:34Z,run_ade0edf249,inc_db54981f1492,,5,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T07:59:34Z,run_ade0edf249,inc_db54981f1492,,6,Ticket Writer,create_ticket,invoke,Create ITSM ticket (ServiceNow / Jira) mapped from severity.,started,
+2026-02-26T07:59:39Z,run_ade0edf249,inc_db54981f1492,,6,Ticket Writer,create_ticket,created,Ticket INC0010021 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010021
+2026-02-26T07:59:39Z,run_ade0edf249,inc_db54981f1492,,7,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T07:59:39Z,run_ade0edf249,inc_db54981f1492,,7,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host,success,High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host
+2026-02-26T07:59:39Z,run_ade0edf249,inc_db54981f1492,,8,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T07:59:39Z,run_ade0edf249,inc_db54981f1492,,8,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T07:59:39Z,run_ade0edf249,inc_db54981f1492,,9,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T07:59:41Z,run_ade0edf249,inc_db54981f1492,,9,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=8c954269c317f2107ee3fc0ed40131ca
+2026-02-26T07:59:41Z,run_ade0edf249,inc_db54981f1492,,10,Solicitor,request_approval,skipped,Severity is 'critical' (critical/P1) — auto-execute without human approval.,skipped,
+2026-02-26T07:59:41Z,run_ade0edf249,inc_db54981f1492,,11,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,1,Collector,normalise_event,normalised,Event evt_c0f1006fedf3 from simulator: cpu_percent=95.0 percent on app-svc.,success
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,2,Evaluator,evaluate_thresholds,alert,cpu_percent 95.0 > 90.0,success
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,3,Alert Router,check_dedup_maintenance,create,create,success
+2026-02-26T08:09:56Z,run_b3bb854d91,,INC0010022,,4,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started
+2026-02-26T08:09:56Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,,4,Incident Creator,create_incident,created,Incident inc_9ce6dbc1deaf created with severity=critical for app-svc.,success
+2026-02-26T08:09:57Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,,5,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started
+2026-02-26T08:09:59Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,,5,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success
+2026-02-26T08:09:59Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,,6,Ticket Writer,create_ticket,invoke,Create ITSM ticket (ServiceNow / Jira) mapped from severity.,started
+2026-02-26T08:10:08Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,INC0010022,6,Ticket Writer,create_ticket,created,Ticket INC0010022 created in servicenow. Severity mapped to urgency/impact/severity fields.,success
+2026-02-26T08:10:08Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,7,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T08:10:08Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,7,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host,success,High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host
+2026-02-26T08:10:08Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,8,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T08:10:08Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,8,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T08:10:08Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,9,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T08:10:10Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,9,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=69f746edc317f2107ee3fc0ed40131d0
+2026-02-26T08:10:10Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,10,Solicitor,request_approval,skipped,Severity is 'critical' (critical/P1) — auto-execute without human approval.,skipped,
+2026-02-26T08:10:10Z,run_b3bb854d91,inc_9ce6dbc1deaf,INC0010022,11,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,1,Collector,normalise_event,normalised,Event evt_042f15e6c92e from simulator: cpu_percent=95.0 percent on app-svc.,success,evt_042f15e6c92e
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,2,Evaluator,evaluate_thresholds,alert,cpu_percent 95.0 > 90.0,success,metric=cpu_percent value=95.0
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T08:27:15Z,run_21b208577c,,INC0010023,4,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T08:27:15Z,run_21b208577c,inc_55b014d95e03,INC0010023,4,Incident Creator,create_incident,created,Incident inc_55b014d95e03 created with severity=critical for app-svc.,success,severity=critical
+2026-02-26T08:27:15Z,run_21b208577c,inc_55b014d95e03,INC0010023,5,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T08:27:19Z,run_21b208577c,inc_55b014d95e03,INC0010023,5,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T08:27:19Z,run_21b208577c,inc_55b014d95e03,INC0010023,6,Ticket Writer,create_ticket,invoke,Create ITSM ticket (ServiceNow / Jira) mapped from severity.,started,
+2026-02-26T08:27:23Z,run_21b208577c,inc_55b014d95e03,INC0010023,6,Ticket Writer,create_ticket,created,Ticket INC0010023 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010023
+2026-02-26T08:27:24Z,run_21b208577c,inc_55b014d95e03,INC0010023,7,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T08:27:24Z,run_21b208577c,inc_55b014d95e03,INC0010023,7,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host,success,High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host
+2026-02-26T08:27:24Z,run_21b208577c,inc_55b014d95e03,INC0010023,8,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T08:27:24Z,run_21b208577c,inc_55b014d95e03,INC0010023,8,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T08:27:24Z,run_21b208577c,inc_55b014d95e03,INC0010023,9,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T08:27:28Z,run_21b208577c,inc_55b014d95e03,INC0010023,9,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=62eb0ee1c357f2107ee3fc0ed40131e0
+2026-02-26T08:27:28Z,run_21b208577c,inc_55b014d95e03,INC0010023,10,Solicitor,request_approval,skipped,Severity is 'critical' (critical/P1) — auto-execute without human approval.,skipped,
+2026-02-26T08:27:28Z,run_21b208577c,inc_55b014d95e03,INC0010023,11,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T08:29:19Z,run_21b208577c,inc_55b014d95e03,INC0010023,12,Closer,close_incident,invoke,Manual close requested for INC0010023. Will resolve + stop SLA + close on servicenow.,started,
+2026-02-26T08:29:30Z,run_21b208577c,inc_55b014d95e03,INC0010023,13,Closer,close_incident,closed,"Ticket INC0010023 resolved, SLA stopped, and closed on servicenow.",success,servicenow:INC0010023
+2026-02-26T08:29:30Z,run_21b208577c,inc_55b014d95e03,INC0010023,14,Pipeline,close_complete,completed,Incident INC0010023 marked closed locally. ITSM ticket also closed.,completed,
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,1,Collector,normalise_event,normalised,Event evt_91d2937f2dd0 from simulator: up=0.0 bool on api-gw.,success,evt_91d2937f2dd0
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,2,Evaluator,evaluate_thresholds,alert,up 0.0 < 1.0,success,metric=up value=0.0
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T08:42:30Z,run_743db4fbfa,,INC0010024,4,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for api-gw.,started,
+2026-02-26T08:42:30Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,4,Incident Creator,create_incident,created,Incident inc_beb38291df5a created with severity=critical for api-gw.,success,severity=critical
+2026-02-26T08:42:30Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,5,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T08:42:34Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,5,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T08:42:34Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,6,Ticket Writer,create_ticket,invoke,Create ITSM ticket (ServiceNow / Jira) mapped from severity.,started,
+2026-02-26T08:42:39Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,6,Ticket Writer,create_ticket,created,Ticket INC0010024 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010024
+2026-02-26T08:42:39Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,7,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T08:42:39Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,7,RCA Agent,analyse_root_cause,2 hypotheses,"Generated hypotheses from metric context: Service down: check process, host, or network; Possible maintenance window or deployment in progress",success,"Service down: check process, host, or network; Possible maintenance window or deployment in progress"
+2026-02-26T08:42:39Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,8,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T08:42:40Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,8,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: service_down, service_down",success,"service_down, service_down"
+2026-02-26T08:42:40Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,9,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T08:42:42Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,9,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=826f8a6dc357f2107ee3fc0ed40131d7
+2026-02-26T08:42:42Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,10,Solicitor,request_approval,skipped,Severity is 'critical' (critical/P1) — auto-execute without human approval.,skipped,
+2026-02-26T08:42:42Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,11,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,1,Collector,normalise_event,normalised,Event evt_460125703968 from simulator: cpu_percent=95.0 percent on app-svc.,success,evt_460125703968
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,2,Evaluator,evaluate_thresholds,alert,cpu_percent 95.0 > 90.0,success,metric=cpu_percent value=95.0
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:15:24Z,run_52dff6cb79,,INC0010025,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010023 may be recurring — new event detected for app-svc/cpu_percent.,warning,old_ticket=INC0010023
+2026-02-26T10:15:27Z,run_52dff6cb79,,INC0010025,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:15:27Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,5,Incident Creator,create_incident,created,Incident inc_b7c59851d072 created with severity=critical for app-svc.,success,severity=critical
+2026-02-26T10:15:27Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:15:27Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,6,Correlator,correlate_incidents,no_match,No similar open incidents found within the correlation window.,success,
+2026-02-26T10:15:27Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:15:29Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:15:29Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:15:39Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,8,Ticket Writer,create_ticket,created,Ticket INC0010025 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010025
+2026-02-26T10:15:39Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:15:39Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host,success,High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host
+2026-02-26T10:15:39Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:15:39Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:15:39Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:15:41Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=c0b4eea5c31bf2107ee3fc0ed4013140
+2026-02-26T10:15:41Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,12,Solicitor,request_approval,skipped,Severity is 'critical' (critical/P1) — auto-execute without human approval.,skipped,
+2026-02-26T10:15:41Z,run_52dff6cb79,inc_b7c59851d072,INC0010025,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,1,Collector,normalise_event,normalised,Event evt_ab0da492a33d from simulator: cpu_percent=95.0 percent on app-svc.,success,evt_ab0da492a33d
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,2,Evaluator,evaluate_thresholds,alert,cpu_percent 95.0 > 90.0,success,metric=cpu_percent value=95.0
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:17:50Z,run_c73809537b,,INC0010027,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010023 may be recurring — new event detected for app-svc/cpu_percent.,warning,old_ticket=INC0010023
+2026-02-26T10:17:52Z,run_c73809537b,,INC0010027,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:17:52Z,run_c73809537b,inc_df2ca2723407,INC0010027,5,Incident Creator,create_incident,created,Incident inc_df2ca2723407 created with severity=critical for app-svc.,success,severity=critical
+2026-02-26T10:17:52Z,run_c73809537b,inc_df2ca2723407,INC0010027,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:17:56Z,run_c73809537b,inc_df2ca2723407,INC0010027,6,Correlator,correlate_incidents,correlated,Created new parent INC0010026. Incident linked as child.,success,parent=INC0010026
+2026-02-26T10:17:56Z,run_c73809537b,inc_df2ca2723407,INC0010027,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:17:59Z,run_c73809537b,inc_df2ca2723407,INC0010027,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:17:59Z,run_c73809537b,inc_df2ca2723407,INC0010027,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:18:04Z,run_c73809537b,inc_df2ca2723407,INC0010027,8,Ticket Writer,create_ticket,created,Ticket INC0010027 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010027
+2026-02-26T10:18:04Z,run_c73809537b,inc_df2ca2723407,INC0010027,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:18:04Z,run_c73809537b,inc_df2ca2723407,INC0010027,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host,success,High CPU likely due to load spike or runaway process; Check for recent deployment or config change on same host
+2026-02-26T10:18:04Z,run_c73809537b,inc_df2ca2723407,INC0010027,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:18:04Z,run_c73809537b,inc_df2ca2723407,INC0010027,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:18:04Z,run_c73809537b,inc_df2ca2723407,INC0010027,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:18:06Z,run_c73809537b,inc_df2ca2723407,INC0010027,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=2b35eee5c31bf2107ee3fc0ed401317f
+2026-02-26T10:18:06Z,run_c73809537b,inc_df2ca2723407,INC0010027,12,Solicitor,request_approval,skipped,Severity is 'critical' (critical/P1) — auto-execute without human approval.,skipped,
+2026-02-26T10:18:06Z,run_c73809537b,inc_df2ca2723407,INC0010027,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:19:48Z,run_52dff6cb79,inc_b7c59851d072,INC0010026,14,Closer,close_incident,invoke,Manual close requested for INC0010026. Will resolve + stop SLA + close on servicenow.,started,
+2026-02-26T10:19:57Z,run_52dff6cb79,inc_b7c59851d072,INC0010026,15,Closer,close_incident,closed,"Ticket INC0010026 resolved, SLA stopped, and closed on servicenow.",success,servicenow:INC0010026
+2026-02-26T10:19:57Z,run_52dff6cb79,inc_b7c59851d072,INC0010026,16,Pipeline,close_complete,completed,Incident INC0010026 marked closed locally. ITSM ticket also closed.,completed,
+2026-02-26T10:19:57Z,run_52dff6cb79,inc_b7c59851d072,INC0010026,17,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T10:19:57Z,run_52dff6cb79,inc_b7c59851d072,INC0010026,17,Aggregator,cluster_closed,5 clusters,"Found 16 closed incidents in 5 cluster(s): app-svc_high_cpu(7), app-svc_error_spike(3), api-gw_service_down(2), api-gw_latency_spike(2), app-svc_high_memory(2)",success,clusters=5
+2026-02-26T10:19:57Z,run_52dff6cb79,inc_b7c59851d072,INC0010026,18,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (7 incidents).",started,
+2026-02-26T10:21:05Z,run_c73809537b,inc_df2ca2723407,INC0010027,14,Closer,close_incident,invoke,Manual close requested for INC0010027. Will resolve + stop SLA + close on servicenow.,started,
+2026-02-26T10:21:15Z,run_c73809537b,inc_df2ca2723407,INC0010027,15,Closer,close_incident,closed,"Ticket INC0010027 resolved, SLA stopped, and closed on servicenow.",success,servicenow:INC0010027
+2026-02-26T10:21:15Z,run_c73809537b,inc_df2ca2723407,INC0010027,16,Pipeline,close_complete,completed,Incident INC0010027 marked closed locally. ITSM ticket also closed.,completed,
+2026-02-26T10:21:15Z,run_c73809537b,inc_df2ca2723407,INC0010027,17,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T10:21:15Z,run_c73809537b,inc_df2ca2723407,INC0010027,17,Aggregator,cluster_closed,5 clusters,"Found 17 closed incidents in 5 cluster(s): app-svc_high_cpu(8), app-svc_error_spike(3), api-gw_service_down(2), api-gw_latency_spike(2), app-svc_high_memory(2)",success,clusters=5
+2026-02-26T10:21:15Z,run_c73809537b,inc_df2ca2723407,INC0010027,18,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (8 incidents).",started,
+2026-02-26T10:24:33Z,doc_4e25db32f8,,,1,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T10:24:33Z,doc_4e25db32f8,,,1,Aggregator,cluster_closed,5 clusters,"Found 17 closed incidents in 5 cluster(s): app-svc_high_cpu(8), app-svc_error_spike(3), api-gw_service_down(2), api-gw_latency_spike(2), app-svc_high_memory(2)",success,clusters=5
+2026-02-26T10:24:33Z,doc_4e25db32f8,,,2,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (8 incidents).",started,
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,1,Collector,normalise_event,normalised,Event evt_9d78fc43de60 from simulator: memory_percent=92.0 percent on app-svc.,success,evt_9d78fc43de60
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,2,Evaluator,evaluate_thresholds,alert,memory_percent 92.0 > 90.0,success,metric=memory_percent value=92.0
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:30:01Z,run_cf0ab5d7b0,,INC0010028,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010019 may be recurring — new event detected for app-svc/memory_percent.,warning,old_ticket=INC0010019
+2026-02-26T10:30:04Z,run_cf0ab5d7b0,,INC0010028,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:30:04Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,5,Incident Creator,create_incident,created,Incident inc_735a6087e9b3 created with severity=high for app-svc.,success,severity=high
+2026-02-26T10:30:04Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:30:04Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,6,Correlator,correlate_incidents,no_match,No similar open incidents found within the correlation window.,success,
+2026-02-26T10:30:04Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:30:06Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:30:06Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:30:13Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,8,Ticket Writer,create_ticket,created,Ticket INC0010028 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010028
+2026-02-26T10:30:13Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:30:13Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache,success,High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache
+2026-02-26T10:30:13Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:30:13Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:30:13Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:30:17Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=6908266dc31bf2107ee3fc0ed40131bf
+2026-02-26T10:30:17Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,12,Solicitor,request_approval,invoke,Severity is 'high' (not critical/P1) and 2 runbook(s) suggested — human approval required before execution.,started,
+2026-02-26T10:30:19Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,12,Solicitor,request_approval,sent,Approval request sent to Teams/email.,success,request_id=req_d9e2d4a592e3
+2026-02-26T10:30:19Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010028,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,1,Collector,normalise_event,normalised,Event evt_cc906b987569 from simulator: memory_percent=92.0 percent on app-svc.,success,evt_cc906b987569
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,2,Evaluator,evaluate_thresholds,alert,memory_percent 92.0 > 90.0,success,metric=memory_percent value=92.0
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:30:19Z,run_915a25f593,,INC0010030,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010019 may be recurring — new event detected for app-svc/memory_percent.,warning,old_ticket=INC0010019
+2026-02-26T10:30:22Z,run_915a25f593,,INC0010030,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:30:22Z,run_915a25f593,inc_e4073222b737,INC0010030,5,Incident Creator,create_incident,created,Incident inc_e4073222b737 created with severity=high for app-svc.,success,severity=high
+2026-02-26T10:30:22Z,run_915a25f593,inc_e4073222b737,INC0010030,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:30:24Z,run_915a25f593,inc_e4073222b737,INC0010030,6,Correlator,correlate_incidents,correlated,Created new parent INC0010029. Incident linked as child.,success,parent=INC0010029
+2026-02-26T10:30:24Z,run_915a25f593,inc_e4073222b737,INC0010030,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:30:26Z,run_915a25f593,inc_e4073222b737,INC0010030,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:30:26Z,run_915a25f593,inc_e4073222b737,INC0010030,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:30:30Z,run_915a25f593,inc_e4073222b737,INC0010030,8,Ticket Writer,create_ticket,created,Ticket INC0010030 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010030
+2026-02-26T10:30:30Z,run_915a25f593,inc_e4073222b737,INC0010030,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:30:30Z,run_915a25f593,inc_e4073222b737,INC0010030,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache,success,High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache
+2026-02-26T10:30:30Z,run_915a25f593,inc_e4073222b737,INC0010030,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:30:30Z,run_915a25f593,inc_e4073222b737,INC0010030,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:30:30Z,run_915a25f593,inc_e4073222b737,INC0010030,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:30:33Z,run_915a25f593,inc_e4073222b737,INC0010030,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=4618e66dc31bf2107ee3fc0ed4013108
+2026-02-26T10:30:33Z,run_915a25f593,inc_e4073222b737,INC0010030,12,Solicitor,request_approval,invoke,Severity is 'high' (not critical/P1) and 2 runbook(s) suggested — human approval required before execution.,started,
+2026-02-26T10:30:35Z,run_915a25f593,inc_e4073222b737,INC0010030,12,Solicitor,request_approval,sent,Approval request sent to Teams/email.,success,request_id=req_2f0c5effa90d
+2026-02-26T10:30:35Z,run_915a25f593,inc_e4073222b737,INC0010030,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,1,Collector,normalise_event,normalised,Event evt_94f7533bb93c from simulator: memory_percent=92.0 percent on app-svc.,success,evt_94f7533bb93c
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,2,Evaluator,evaluate_thresholds,alert,memory_percent 92.0 > 90.0,success,metric=memory_percent value=92.0
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:30:35Z,run_8dc54f65b2,,INC0010031,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010019 may be recurring — new event detected for app-svc/memory_percent.,warning,old_ticket=INC0010019
+2026-02-26T10:30:37Z,run_8dc54f65b2,,INC0010031,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:30:37Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,5,Incident Creator,create_incident,created,Incident inc_cf090a1c3f0c created with severity=high for app-svc.,success,severity=high
+2026-02-26T10:30:37Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:30:37Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,6,Correlator,correlate_incidents,correlated,Found existing parent INC0010029. Incident linked as child.,success,parent=INC0010029
+2026-02-26T10:30:37Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:30:39Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:30:39Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:30:44Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,8,Ticket Writer,create_ticket,created,Ticket INC0010031 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010031
+2026-02-26T10:30:44Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:30:44Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache,success,High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache
+2026-02-26T10:30:44Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:30:44Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:30:44Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:30:47Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=1d282a6dc31bf2107ee3fc0ed401314c
+2026-02-26T10:30:47Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,12,Solicitor,request_approval,invoke,Severity is 'high' (not critical/P1) and 2 runbook(s) suggested — human approval required before execution.,started,
+2026-02-26T10:30:50Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,12,Solicitor,request_approval,sent,Approval request sent to Teams/email.,success,request_id=req_ce5f3a7f1f8f
+2026-02-26T10:30:50Z,run_8dc54f65b2,inc_cf090a1c3f0c,INC0010031,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,1,Collector,normalise_event,normalised,Event evt_d2f7c05b4c76 from simulator: memory_percent=92.0 percent on app-svc.,success,evt_d2f7c05b4c76
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,2,Evaluator,evaluate_thresholds,alert,memory_percent 92.0 > 90.0,success,metric=memory_percent value=92.0
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:30:50Z,run_34f646f720,,INC0010032,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010019 may be recurring — new event detected for app-svc/memory_percent.,warning,old_ticket=INC0010019
+2026-02-26T10:30:53Z,run_34f646f720,,INC0010032,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:30:53Z,run_34f646f720,inc_99f643ca5002,INC0010032,5,Incident Creator,create_incident,created,Incident inc_99f643ca5002 created with severity=high for app-svc.,success,severity=high
+2026-02-26T10:30:53Z,run_34f646f720,inc_99f643ca5002,INC0010032,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:30:53Z,run_34f646f720,inc_99f643ca5002,INC0010032,6,Correlator,correlate_incidents,correlated,Found existing parent INC0010029. Incident linked as child.,success,parent=INC0010029
+2026-02-26T10:30:53Z,run_34f646f720,inc_99f643ca5002,INC0010032,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:30:55Z,run_34f646f720,inc_99f643ca5002,INC0010032,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:30:55Z,run_34f646f720,inc_99f643ca5002,INC0010032,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:30:59Z,run_34f646f720,inc_99f643ca5002,INC0010032,8,Ticket Writer,create_ticket,created,Ticket INC0010032 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010032
+2026-02-26T10:30:59Z,run_34f646f720,inc_99f643ca5002,INC0010032,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:30:59Z,run_34f646f720,inc_99f643ca5002,INC0010032,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache,success,High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache
+2026-02-26T10:30:59Z,run_34f646f720,inc_99f643ca5002,INC0010032,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:30:59Z,run_34f646f720,inc_99f643ca5002,INC0010032,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:30:59Z,run_34f646f720,inc_99f643ca5002,INC0010032,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:31:02Z,run_34f646f720,inc_99f643ca5002,INC0010032,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=09386a6dc31bf2107ee3fc0ed40131cf
+2026-02-26T10:31:02Z,run_34f646f720,inc_99f643ca5002,INC0010032,12,Solicitor,request_approval,invoke,Severity is 'high' (not critical/P1) and 2 runbook(s) suggested — human approval required before execution.,started,
+2026-02-26T10:31:04Z,run_34f646f720,inc_99f643ca5002,INC0010032,12,Solicitor,request_approval,sent,Approval request sent to Teams/email.,success,request_id=req_b453a2edd455
+2026-02-26T10:31:04Z,run_34f646f720,inc_99f643ca5002,INC0010032,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,1,Collector,normalise_event,invoke,Incoming payload received — normalise into standard event schema.,started,
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,1,Collector,normalise_event,normalised,Event evt_0a6a242ef06f from simulator: memory_percent=92.0 percent on app-svc.,success,evt_0a6a242ef06f
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,2,Evaluator,evaluate_thresholds,invoke,Check event metric against alert_rules.csv thresholds.,started,
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,2,Evaluator,evaluate_thresholds,alert,memory_percent 92.0 > 90.0,success,metric=memory_percent value=92.0
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,3,Alert Router,check_dedup_maintenance,invoke,Alert triggered — check deduplication window and maintenance windows.,started,
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,3,Alert Router,check_dedup_maintenance,create,create,success,
+2026-02-26T10:31:04Z,run_34883f21fe,,INC0010033,4,Alert Router,reopen_detection,reopen_alert,Resolved incident INC0010019 may be recurring — new event detected for app-svc/memory_percent.,warning,old_ticket=INC0010019
+2026-02-26T10:31:07Z,run_34883f21fe,,INC0010033,5,Incident Creator,create_incident,invoke,Threshold breached and no suppression — create incident for app-svc.,started,
+2026-02-26T10:31:07Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,5,Incident Creator,create_incident,created,Incident inc_a6dd447b2556 created with severity=high for app-svc.,success,severity=high
+2026-02-26T10:31:07Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,6,Correlator,correlate_incidents,invoke,Scanning open incidents for similar service + metric to detect correlated issues.,started,
+2026-02-26T10:31:07Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,6,Correlator,correlate_incidents,correlated,Found existing parent INC0010029. Incident linked as child.,success,parent=INC0010029
+2026-02-26T10:31:07Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,7,Notifier,send_notifications,invoke,"Notify configured channels (Teams, email) about new incident.",started,
+2026-02-26T10:31:09Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,7,Notifier,send_notifications,notified,Notification dispatched to configured channels.,success,
+2026-02-26T10:31:09Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,8,Ticket Writer,create_ticket,invoke,"Create ITSM ticket (ServiceNow / Jira) mapped from severity, category, and assignment group.",started,
+2026-02-26T10:31:13Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,8,Ticket Writer,create_ticket,created,Ticket INC0010033 created in servicenow. Severity mapped to urgency/impact/severity fields.,success,servicenow:INC0010033
+2026-02-26T10:31:13Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,9,RCA Agent,analyse_root_cause,invoke,Incident created with ticket — run root-cause analysis to identify hypotheses.,started,
+2026-02-26T10:31:13Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,9,RCA Agent,analyse_root_cause,2 hypotheses,Generated hypotheses from metric context: High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache,success,High memory may indicate leak or cache growth; Review recent code/config changes affecting heap or cache
+2026-02-26T10:31:13Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,10,Recommender,suggest_runbooks,invoke,Search knowledge base for runbooks matching incident summary and service.,started,
+2026-02-26T10:31:13Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,10,Recommender,suggest_runbooks,2 runbooks found,"Matched runbooks by keywords in summary/service: high_cpu, high_memory",success,"high_cpu, high_memory"
+2026-02-26T10:31:13Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,11,Enricher,enrich_ticket,invoke,Append RCA hypotheses and runbook suggestions as work notes on servicenow ticket.,started,
+2026-02-26T10:31:15Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,11,Enricher,enrich_ticket,enriched,Work notes appended with hypotheses and recommended runbooks.,success,ticket_id=d848ea6dc31bf2107ee3fc0ed4013184
+2026-02-26T10:31:15Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,12,Solicitor,request_approval,invoke,Severity is 'high' (not critical/P1) and 2 runbook(s) suggested — human approval required before execution.,started,
+2026-02-26T10:31:18Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,12,Solicitor,request_approval,sent,Approval request sent to Teams/email.,success,request_id=req_edb6a785de7d
+2026-02-26T10:31:18Z,run_34883f21fe,inc_a6dd447b2556,INC0010033,13,Pipeline,end,completed,All pipeline phases executed.,completed,
+2026-02-26T11:08:47Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,12,Closer,close_incident,invoke,Manual close requested for INC0010024. Will resolve + stop SLA + close on servicenow.,started,
+2026-02-26T11:09:01Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,13,Closer,close_incident,closed,"Ticket INC0010024 resolved, SLA stopped, and closed on servicenow.",success,servicenow:INC0010024
+2026-02-26T11:09:01Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,14,Pipeline,close_complete,completed,Incident INC0010024 marked closed locally. ITSM ticket also closed.,completed,
+2026-02-26T11:09:01Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,15,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T11:09:01Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,15,Aggregator,cluster_closed,5 clusters,"Found 18 closed incidents in 5 cluster(s): app-svc_high_cpu(8), api-gw_service_down(3), app-svc_error_spike(3), api-gw_latency_spike(2), app-svc_high_memory(2)",success,clusters=5
+2026-02-26T11:09:01Z,run_743db4fbfa,inc_beb38291df5a,INC0010024,16,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (8 incidents).",started,
+2026-02-26T11:10:08Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,14,CascadeCloser,cascade_close,invoke,"Cascade close started for master ticket INC0010029. Will close all children first, then the master.",started,
+2026-02-26T11:10:08Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,15,CascadeCloser,close_child,invoke,Closing child ticket INC0010030 (under master INC0010029).,started,
+2026-02-26T11:10:19Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,16,CascadeCloser,close_child,closed,Child INC0010030 closed successfully on servicenow.,success,INC0010030
+2026-02-26T11:10:19Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,17,CascadeCloser,close_child,invoke,Closing child ticket INC0010031 (under master INC0010029).,started,
+2026-02-26T11:10:29Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,18,CascadeCloser,close_child,closed,Child INC0010031 closed successfully on servicenow.,success,INC0010031
+2026-02-26T11:10:29Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,19,CascadeCloser,close_child,invoke,Closing child ticket INC0010032 (under master INC0010029).,started,
+2026-02-26T11:10:41Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,20,CascadeCloser,close_child,closed,Child INC0010032 closed successfully on servicenow.,success,INC0010032
+2026-02-26T11:10:41Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,21,CascadeCloser,close_child,invoke,Closing child ticket INC0010033 (under master INC0010029).,started,
+2026-02-26T11:10:50Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,22,CascadeCloser,close_child,closed,Child INC0010033 closed successfully on servicenow.,success,INC0010033
+2026-02-26T11:10:50Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,23,CascadeCloser,close_master,invoke,Closing master ticket INC0010029 after 4 children closed.,started,
+2026-02-26T11:10:59Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,24,CascadeCloser,cascade_complete,completed,"Cascade close finished for INC0010029. Children OK: 4, failed: 0. Master ITSM: success.",completed,
+2026-02-26T11:10:59Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,25,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T11:10:59Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,25,Aggregator,cluster_closed,5 clusters,"Found 23 closed incidents in 5 cluster(s): app-svc_high_cpu(8), app-svc_high_memory(7), api-gw_service_down(3), app-svc_error_spike(3), api-gw_latency_spike(2)",success,clusters=5
+2026-02-26T11:10:59Z,run_cf0ab5d7b0,inc_735a6087e9b3,INC0010029,26,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (8 incidents).",started,
+2026-02-26T11:14:04Z,doc_199c0b1ae3,,,1,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T11:14:04Z,doc_199c0b1ae3,,,1,Aggregator,cluster_closed,5 clusters,"Found 23 closed incidents in 5 cluster(s): app-svc_high_cpu(8), app-svc_high_memory(7), api-gw_service_down(3), app-svc_error_spike(3), api-gw_latency_spike(2)",success,clusters=5
+2026-02-26T11:14:04Z,doc_199c0b1ae3,,,2,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (8 incidents).",started,
+2026-02-26T11:16:47Z,doc_691e0da015,,,1,Aggregator,cluster_closed,invoke,Scanning closed incidents and clustering by service + theme.,started,
+2026-02-26T11:16:47Z,doc_691e0da015,,,1,Aggregator,cluster_closed,5 clusters,"Found 23 closed incidents in 5 cluster(s): app-svc_high_cpu(8), app-svc_high_memory(7), api-gw_service_down(3), app-svc_error_spike(3), api-gw_latency_spike(2)",success,clusters=5
+2026-02-26T11:16:47Z,doc_691e0da015,,,2,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_cpu' (8 incidents).",started,
+2026-02-26T11:16:50Z,doc_691e0da015,,,2,Doc Writer,generate_docs,3 formats,"Generated md, docx, pdf for app-svc_high_cpu.",success,"files=md, docx, pdf"
+2026-02-26T11:16:50Z,doc_691e0da015,,,3,Publisher,publish_docs,invoke,Publishing docs to knowledge/generated/ and sending optional notification.,started,
+2026-02-26T11:16:53Z,doc_691e0da015,,,3,Publisher,publish_docs,published,Published 3 file(s). Teams notify: sent.,success,
+2026-02-26T11:16:53Z,doc_691e0da015,,,4,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_high_memory' (7 incidents).",started,
+2026-02-26T11:16:53Z,doc_691e0da015,,,4,Doc Writer,generate_docs,3 formats,"Generated md, docx, pdf for app-svc_high_memory.",success,"files=md, docx, pdf"
+2026-02-26T11:16:53Z,doc_691e0da015,,,5,Publisher,publish_docs,invoke,Publishing docs to knowledge/generated/ and sending optional notification.,started,
+2026-02-26T11:16:55Z,doc_691e0da015,,,5,Publisher,publish_docs,published,Published 3 file(s). Teams notify: sent.,success,
+2026-02-26T11:16:55Z,doc_691e0da015,,,6,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'api-gw_service_down' (3 incidents).",started,
+2026-02-26T11:16:55Z,doc_691e0da015,,,6,Doc Writer,generate_docs,3 formats,"Generated md, docx, pdf for api-gw_service_down.",success,"files=md, docx, pdf"
+2026-02-26T11:16:55Z,doc_691e0da015,,,7,Publisher,publish_docs,invoke,Publishing docs to knowledge/generated/ and sending optional notification.,started,
+2026-02-26T11:16:58Z,doc_691e0da015,,,7,Publisher,publish_docs,published,Published 3 file(s). Teams notify: sent.,success,
+2026-02-26T11:16:58Z,doc_691e0da015,,,8,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'app-svc_error_spike' (3 incidents).",started,
+2026-02-26T11:16:58Z,doc_691e0da015,,,8,Doc Writer,generate_docs,3 formats,"Generated md, docx, pdf for app-svc_error_spike.",success,"files=md, docx, pdf"
+2026-02-26T11:16:58Z,doc_691e0da015,,,9,Publisher,publish_docs,invoke,Publishing docs to knowledge/generated/ and sending optional notification.,started,
+2026-02-26T11:17:01Z,doc_691e0da015,,,9,Publisher,publish_docs,published,Published 3 file(s). Teams notify: sent.,success,
+2026-02-26T11:17:01Z,doc_691e0da015,,,10,Doc Writer,generate_docs,invoke,"Generating .md, .docx, .pdf for cluster 'api-gw_latency_spike' (2 incidents).",started,
+2026-02-26T11:17:01Z,doc_691e0da015,,,10,Doc Writer,generate_docs,3 formats,"Generated md, docx, pdf for api-gw_latency_spike.",success,"files=md, docx, pdf"
+2026-02-26T11:17:01Z,doc_691e0da015,,,11,Publisher,publish_docs,invoke,Publishing docs to knowledge/generated/ and sending optional notification.,started,
+2026-02-26T11:17:04Z,doc_691e0da015,,,11,Publisher,publish_docs,published,Published 3 file(s). Teams notify: sent.,success,
+2026-02-26T11:17:04Z,doc_691e0da015,,,12,Pipeline,chronicler_complete,completed,"Chronicler pipeline finished: 5 cluster(s), 15 doc(s) generated.",completed,
