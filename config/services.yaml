@@ -22,3 +22,6 @@ rag:
   enabled: false
   endpoint_env: RAG_ENDPOINT
   api_key_env: RAG_API_KEY
+orchestrator:
+  polling_enabled: false
+  poll_interval_seconds: 60

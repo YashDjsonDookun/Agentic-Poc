@@ -1,4 +1,6 @@
 servicenow:
-  enabled: false
+  enabled: true
 jira:
   enabled: false
+teams:
+  enabled: true

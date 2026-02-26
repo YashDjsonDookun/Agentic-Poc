@@ -1,5 +1,5 @@
-severity,jira_priority,servicenow_priority
-critical,Highest,1
-high,High,2
-medium,Medium,3
-low,Low,4
+severity,jira_priority,servicenow_urgency,servicenow_impact,servicenow_severity
+critical,Highest,1,1,1
+high,High,1,2,1
+medium,Medium,2,2,2
+low,Low,3,3,3

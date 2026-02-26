@@ -1,0 +1,6 @@
+metric,service,category,subcategory
+cpu_percent,,Hardware,CPU
+memory_percent,,Hardware,Memory
+error_rate,,Software,Application
+up,,Software,Service
+latency_p99_ms,,Network,Latency

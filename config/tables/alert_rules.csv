@@ -1,3 +1,6 @@
 rule_id,metric,operator,threshold,service,enabled
-rule_1,cpu_percent,gt,90,app-svc,true
-rule_2,error_rate,gt,0.05,api-gw,true
+rule_1,cpu_percent,gt,90.0,app-svc,True
+rule_2,error_rate,gt,0.05,app-svc,True
+rule_3,up,lt,1.0,api-gw,True
+rule_4,memory_percent,gt,90.0,app-svc,True
+rule_5,latency_p99_ms,gt,1000.0,api-gw,True
