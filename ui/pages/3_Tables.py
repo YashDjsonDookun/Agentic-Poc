@@ -18,6 +18,8 @@ TABLES = {
     "severity_priority": "severity_priority.csv",
     "maintenance_windows": "maintenance_windows.csv",
     "services": "services.csv",
+    "category_mapping": "category_mapping.csv",
+    "assignment_routing": "assignment_routing.csv",
 }
 
 choice = st.selectbox("Select table", list(TABLES.keys()))

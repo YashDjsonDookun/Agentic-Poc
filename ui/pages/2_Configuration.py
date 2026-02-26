@@ -139,9 +139,9 @@ with tab2:
 
 # ---- Integrations ----
 with tab3:
-    st.subheader("Integrations (ServiceNow, Jira)")
+    st.subheader("Integrations (ServiceNow, Jira, Teams)")
     data = load_yaml(integrations_path)
-    from integrations import jira, servicenow
+    from integrations import jira, servicenow, teams
     from integrations.servicenow import test_connection as servicenow_test_connection
     from integrations.jira import test_connection as jira_test_connection
 
@@ -187,6 +187,7 @@ with tab3:
     if not st.session_state.config_edit_mode:
         st.markdown(f"- **ServiceNow**: {'✅ configured' if servicenow.is_configured() else '❌ not configured'}")
         st.markdown(f"- **Jira**: {'✅ configured' if jira.is_configured() else '❌ not configured'}")
+        st.markdown(f"- **Teams** (approval notifications): {'✅ configured' if teams.is_configured() else '❌ not configured'}")
         for name, cfg in (data or {}).items():
             if isinstance(cfg, dict):
                 creds = local_creds.get(name) or {}
@@ -201,6 +202,8 @@ with tab3:
                         st.text(f"Username: {'(set)' if creds.get('username') else '(not set)'}")
                         st.text(f"API token: {'(set)' if creds.get('api_token') else '(not set)'}")
                         st.text(f"Project key: {creds.get('project_key') or '(not set)'}")
+                    elif name == "teams":
+                        st.text(f"Webhook URL: {'(set)' if creds.get('webhook_url') else '(not set)'}")
         if not data:
             st.info("No integrations in config.")
     else:
@@ -236,6 +239,12 @@ with tab3:
                         )
                         new_local.setdefault(name, {})["project_key"] = st.text_input(
                             "Project key (optional)", value=creds.get("project_key") or "", key=f"int_{name}_proj"
+                        )
+                    elif name == "teams":
+                        new_local.setdefault(name, {})["webhook_url"] = st.text_input(
+                            "Incoming webhook URL", value=creds.get("webhook_url") or "",
+                            help="MS Teams channel Incoming Webhook URL for approval notifications",
+                            key=f"int_{name}_webhook"
                         )
 
             if st.form_submit_button("Save integrations"):
