@@ -19,17 +19,34 @@ def _ensure_incidents_dir():
 
 
 def _infer_severity(metric: str, value: float) -> str:
-    """Simple mapping: high value -> higher severity."""
-    if "error" in metric or "up" in metric:
-        return "high" if value > 0.1 or value == 0 else "medium"
-    if "percent" in metric or "rate" in metric:
+    """Map metric + value to severity.  Covers cpu_percent, memory_percent,
+    error_rate, up (bool), and latency_p99_ms from the simulator."""
+    m = metric.lower()
+    if m == "up":
+        return "critical" if value == 0 else "low"
+    if "error" in m:
+        if value >= 0.20:
+            return "critical"
+        if value >= 0.10:
+            return "high"
+        return "medium" if value >= 0.05 else "low"
+    if "latency" in m or m.endswith("_ms"):
+        if value >= 3000:
+            return "critical"
+        if value >= 1500:
+            return "high"
+        if value >= 800:
+            return "medium"
+        return "low"
+    if "percent" in m or "rate" in m:
         if value >= 95:
             return "critical"
         if value >= 80:
             return "high"
         if value >= 60:
             return "medium"
-    return "low"
+        return "low"
+    return "medium"
 
 
 def create_incident(
@@ -62,6 +79,8 @@ def create_incident(
         "timestamp": ts,
         "ticket_id": "",
         "ticket_system": "",
+        "ticket_number": "",
+        "status": "open",
     }
     file_exists = INCIDENTS_CSV.exists()
     with open(INCIDENTS_CSV, "a", newline="", encoding="utf-8") as f:
@@ -71,3 +90,44 @@ def create_incident(
         w.writerow(row)
     audit.log_simple("sentinel", "incident_created", incident_id, "success")
     return incident
+
+
+def get_incident_row(incident_id: str) -> dict | None:
+    """Return the incident row as dict (including ticket_id, ticket_system, status if present) or None."""
+    if not INCIDENTS_CSV.exists():
+        return None
+    with open(INCIDENTS_CSV, "r", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row.get("incident_id") == incident_id:
+                if "status" not in row:
+                    row["status"] = "open"
+                return row
+    return None
+
+
+def set_incident_status(incident_id: str, status: str) -> bool:
+    """Update incident row status (e.g. closed). Returns True if updated."""
+    if not INCIDENTS_CSV.exists():
+        return False
+    rows = []
+    fieldnames = None
+    updated = False
+    with open(INCIDENTS_CSV, "r", newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = list(reader.fieldnames or [])
+        if "status" not in fieldnames:
+            fieldnames.append("status")
+        for row in reader:
+            if row.get("incident_id") == incident_id:
+                row["status"] = status
+                updated = True
+            if "status" not in row:
+                row["status"] = "open"
+            rows.append(row)
+    if not updated or not fieldnames:
+        return False
+    with open(INCIDENTS_CSV, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    return True
