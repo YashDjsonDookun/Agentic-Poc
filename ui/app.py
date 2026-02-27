@@ -18,7 +18,7 @@ st.caption("Central hub & control panel — configure agents, view tickets, simu
 
 # Multi-page: Streamlit auto-adds pages from ui/pages/ to the sidebar.
 st.sidebar.markdown("### Pages")
-st.sidebar.markdown("Use the sidebar: **Overview** → **Configuration** → **Tables** → **Tickets** → **Simulate** → **Logs** → **Workflow** → **Insights**.")
+st.sidebar.markdown("Use the sidebar: **Overview** → **Configuration** → **Tables** → **Tickets** → **Simulate** → **Logs** → **Workflow** → **Insights** → **Live Pipeline**.")
 
 st.markdown("---")
 st.markdown("""
@@ -30,4 +30,5 @@ st.markdown("""
 - **Logs** — Toggle simple/comprehensive audit logs; filter by agent, action, date, outcome.
 - **Workflow** — Real-time pipeline trace: agent-to-agent progress, decisions, and rationale.
 - **Insights** — Dependency graphs, category breakdowns, severity distributions, and ticket linkage analytics.
+- **Live Pipeline** — Watch the orchestrator process events in real-time: agents making decisions, delegating tasks, and reasoning through each step.
 """)
